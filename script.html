@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple and secure password generator tool.">
+    <title>Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+  </head>
+  <body>
+    <h1>Password Generator</h1>
+    <p class="disclaimer">
+      <strong>Note:</strong> This tool generates passwords <strong>entirely in your browser</strong>.
+      No passwords are saved, stored, or sent to any server. Your data stays 100% private.
+    </p>
+
+    <label for="passwordLength">Enter the length of the password (8-64):</label>
+    <input type="number" id="passwordLength" placeholder="e.g., 12" min="8" max="64">
+    <br><br>
+
+    <div>
+      <label><input type="checkbox" id="includeUppercase" checked> Uppercase Letters</label>
+      <label><input type="checkbox" id="includeLowercase" checked> Lowercase Letters</label>
+      <label><input type="checkbox" id="includeNumbers" checked> Numbers</label>
+      <label><input type="checkbox" id="includeSymbols" checked> Symbols</label>
+    </div>
+    <br>
+
+    <button id="generatePassword">Generate Password</button>
+    <button id="downloadPassword" style="display:none;">Download Password</button>
+    <br><br>
+
+    <p>Generated Password:</p>
+    <p id="displayPassword"></p>
+    <button id="copyPassword" style="display:none;">Copy to Clipboard</button>
+    <br><br>
+
+    <div class="password-requirements">
+      <h3>Password Requirements</h3>
+      <ul>
+        <li>At least 8 characters long</li>
+        <li>Include uppercase and lowercase letters</li>
+        <li>Include numbers and symbols</li>
+      </ul>
+    </div>
+
+    <div id="strengthBar">
+      <div id="strengthProgress"></div>
+    </div>
+    <p id="strengthText"></p>
+
+    <!-- Share Feedback Button -->
+    <button id="shareFeedback">Share Feedback</button>
+
+    <!-- Rate This Tool Section -->
+    <div class="rate-tool">
+      <p>Enjoying this tool? Rate it:</p>
+      <div class="stars">
+        <span>⭐</span>
+        <span>⭐</span>
+        <span>⭐</span>
+        <span>⭐</span>
+        <span>⭐</span>
+      </div>
+    </div>
+
+    <!-- Password History Section -->
+    <div id="passwordHistory">
+      <h3>Password History</h3>
+      <ul id="historyList"></ul>
+      <button id="clearHistory">Clear History</button>
+    </div>
+
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+
+    <footer>
+      <p>Made with ❤️ by [Zwer].</p>
+      <p>Use this tool to generate strong and secure passwords.</p>
+    </footer>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
