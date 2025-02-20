@@ -14,6 +14,7 @@ const shareFeedback = document.getElementById("shareFeedback");
 const stars = document.querySelectorAll(".stars span");
 const historyList = document.getElementById("historyList");
 const clearHistory = document.getElementById("clearHistory");
+const contactForm = document.getElementById("contactForm");
 
 let passwordHistory = [];
 
@@ -99,6 +100,12 @@ stars.forEach((star, index) => {
     });
     alert(`Thanks for rating us ${index + 1} stars!`);
   });
+});
+
+contactForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+  alert("Thank you for your message! We'll get back to you soon.");
+  contactForm.reset(); // Clear the form
 });
 
 // Password History Section
