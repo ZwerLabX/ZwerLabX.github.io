@@ -1,49 +1,71 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - ZwerLab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-    <header>
-      <h1>About Me</h1>
-      <nav>
-        <button id="darkModeToggle" class="btn btn-outline-light ms-3">
-          <img id="darkModeIcon" src="images/dark-toggle-off.jpeg" alt="Toggle Dark Mode" width="30">
-        </button>
-        <a href="/">Home</a>
-        <a href="password-generator.html">Password Generator</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ZwerLab</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="password-generator.html">Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <span id="darkModeIcon">🌕</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>About ZwerLab</h1>
+            <p>Your hub for tools, knowledge, and innovation.</p>
+        </div>
     </header>
-    <main>
-      <h2>Welcome to ZwerLab!</h2>
-      <p>
-        Hey there! I’m <strong>Zwer</strong>, a programmer and tech enthusiast who loves building things and exploring ideas.
-        This website is my personal space where I experiment, create, and share knowledge—whether it’s tools, security insights, or tech-related topics.
-      </p>
-      <h3>Why I Created This Website</h3>
-      <p>
-        I’ve always been passionate about technology, security, and problem-solving. I built this site to be a mix of **practical tools** and **interesting insights**—
-        a place where I can share what I learn, what I build, and hopefully help others along the way.
-      </p>
-      <h3>What You’ll Find Here</h3>
-      <ul>
-        <li><strong>Tools & Projects:</strong> Simple but useful tools like the <a href="password-generator.html">Password Generator</a>.</li>
-        <li><strong>Tech & Security:</strong> Tips, experiments, and thoughts on ethical hacking, programming, and digital security.</li>
-        <li><strong>More Coming Soon:</strong> This site is a work in progress, and I’m always adding new things.</li>
-      </ul>
-      <p>
-        This is just the beginning! If you have any feedback, suggestions, or just want to say hi, feel free to <a href="contact.html">reach out</a>.
-        Let’s build something great together. 🚀
-      </p>
+
+    <main class="container my-5">
+        <h2>Welcome to ZwerLab!</h2>
+        <p>
+            Hey there! I’m <strong>Zwer</strong>, a programmer and tech enthusiast who loves building useful tools and exploring new ideas.
+            This website is my personal space where I share my projects, security insights, and tech-related topics.
+        </p>
+        <h3>Why I Built This Website</h3>
+        <p>
+            I’ve always been passionate about technology, ethical hacking, and problem-solving. My goal is to provide valuable tools and
+            resources that help people navigate the digital world more securely.
+        </p>
+        <h3>What You’ll Find Here</h3>
+        <ul>
+            <li><strong>Tools & Projects:</strong> Practical tools like the 
+                <a href="password-generator.html" class="highlight-link">Password Generator</a>.
+            </li>
+            <li><strong>Tech & Security:</strong> Insights on cybersecurity, programming, and digital privacy.</li>
+            <li><strong>More Coming Soon:</strong> The website is constantly evolving with new features.</li>
+        </ul>
+        <p>
+            If you have any feedback, suggestions, or just want to say hi, feel free to 
+            <a href="contact.html" class="highlight-link">reach out</a>. Let’s build something great together! 🚀
+        </p>
     </main>
-    <footer>
-      <p>Made with ❤️ by Zwer.</p>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Made with ❤️ by Zwer.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
-  </body>
+</body>
 </html>

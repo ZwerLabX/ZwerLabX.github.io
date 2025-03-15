@@ -1,1 +1,147 @@
-<html>...</html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | ZwerLab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .blog-image {
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-tag {
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .blog-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        body.dark-mode .blog-date {
+            color: #aaa;
+        }
+        .blog-excerpt {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .featured-post {
+            border-radius: 20px;
+            background: linear-gradient(45deg, rgba(9, 132, 227, 0.1), rgba(108, 92, 231, 0.1));
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        body.dark-mode .featured-post {
+            background: linear-gradient(45deg, rgba(116, 185, 255, 0.1), rgba(162, 155, 254, 0.1));
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ZwerLab</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="password-generator.html">Tools</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <span id="darkModeIcon">🌑</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Blog</h1>
+            <p class="lead">Insights, tutorials, and updates from the ZwerLab team</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="featured-post">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <span class="blog-tag bg-primary text-white">Featured</span>
+                    <h2>Understanding Modern Password Security</h2>
+                    <p class="blog-date">March 15, 2025</p>
+                    <p>Dive deep into the world of modern password security. Learn about the latest best practices, common vulnerabilities, and how to keep your digital life secure.</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://illustrations.popsy.co/white/virtual-reality.svg" alt="Password Security" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <article class="card blog-card h-100">
+                    <img src="https://illustrations.popsy.co/white/mobile-development.svg" alt="Web Development" class="blog-image">
+                    <div class="card-body">
+                        <span class="blog-tag bg-info text-white">Tutorial</span>
+                        <h3 class="card-title h5">Getting Started with Web Development</h3>
+                        <p class="blog-date">March 10, 2025</p>
+                        <p class="blog-excerpt">Learn the fundamentals of web development with our comprehensive guide for beginners.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card blog-card h-100">
+                    <img src="https://illustrations.popsy.co/white/artificial-intelligence.svg" alt="AI" class="blog-image">
+                    <div class="card-body">
+                        <span class="blog-tag bg-success text-white">Technology</span>
+                        <h3 class="card-title h5">The Future of AI in Development</h3>
+                        <p class="blog-date">March 8, 2025</p>
+                        <p class="blog-excerpt">Explore how artificial intelligence is shaping the future of software development.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card blog-card h-100">
+                    <img src="https://illustrations.popsy.co/white/cloud-computing.svg" alt="Cloud Computing" class="blog-image">
+                    <div class="card-body">
+                        <span class="blog-tag bg-warning text-dark">Cloud</span>
+                        <h3 class="card-title h5">Cloud Computing Essentials</h3>
+                        <p class="blog-date">March 5, 2025</p>
+                        <p class="blog-excerpt">Understanding the basics of cloud computing and its impact on modern development.</p>
+                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Zwer</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

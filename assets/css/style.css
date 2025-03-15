@@ -1,87 +1,252 @@
 /* General Styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   background-color: #f8f9fa;
-  color: #333;
+  color: #2d3436;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Navbar */
+/* Modern Navbar */
 .navbar {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
 }
+
 .navbar-brand {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 700;
+  background: linear-gradient(45deg, #0984e3, #6c5ce7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.3s ease;
 }
 
-/* Hero Section */
-header {
-  padding: 60px 0;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  color: white;
+.navbar-brand:hover {
+  opacity: 0.85;
 }
-header h1 {
+
+.navbar .nav-link {
+  position: relative;
+  color: #2d3436 !important;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  background-color: rgba(9, 132, 227, 0.1);
+  color: #0984e3 !important;
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+  color: #0984e3 !important;
+  background-color: rgba(9, 132, 227, 0.1);
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #0984e3;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 80%;
+}
+
+/* Rounded Buttons */
+.btn {
+  border-radius: 12px;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #0984e3, #6c5ce7);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #0773c5, #5b4dd4);
+}
+
+/* Dark Mode Enhancements */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f5f6fa;
+}
+
+body.dark-mode .navbar {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .navbar .nav-link {
+  color: #f5f6fa !important;
+}
+
+body.dark-mode .navbar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #74b9ff !important;
+}
+
+body.dark-mode .navbar .nav-link.active {
+  color: #74b9ff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .navbar .nav-link::after {
+  background: #74b9ff;
+}
+
+body.dark-mode .card {
+  background-color: #2d2d2d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f5f6fa;
+}
+
+body.dark-mode .card label {
+  color: #f5f6fa;
+}
+
+body.dark-mode .form-control {
+  background-color: #3d3d3d;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f5f6fa;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: #3d3d3d;
+  border-color: #74b9ff;
+  color: #f5f6fa;
+}
+
+body.dark-mode .form-check-label {
+  color: #f5f6fa;
+}
+
+body.dark-mode .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #f5f6fa;
+}
+
+body.dark-mode .btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #74b9ff;
+}
+
+/* Accessibility Improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+:focus {
+  outline: 3px solid #0984e3;
+  outline-offset: 2px;
+}
+
+/* Gradient Header */
+.page-header {
+  background: linear-gradient(45deg, #0984e3, #6c5ce7);
+  color: white;
+  text-align: center;
+  padding: 3rem 1.5rem;
   font-size: 2.5rem;
   font-weight: bold;
-}
-header p {
-  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Buttons */
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-  transition: 0.3s;
-}
-.btn-primary:hover {
-  background-color: #0056b3;
+/* Dark Mode Header */
+body.dark-mode .page-header {
+  background: linear-gradient(45deg, #2d3436, #3d3d3d);
 }
 
-/* Sections */
-section {
-  padding: 40px 0;
+/* Container and Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 /* Footer */
 footer {
-  background-color: #343a40;
+  background: linear-gradient(45deg, #0984e3, #6c5ce7);
   color: white;
-  padding: 20px 0;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
 }
 
-body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
+body.dark-mode footer {
+  background: linear-gradient(45deg, #2d3436, #3d3d3d);
 }
 
-.navbar, .footer {
-  transition: background-color 0.3s;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar .nav-link {
+    margin: 0.25rem 0;
+  }
+  
+  .navbar-collapse {
+    background-color: inherit;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .navbar .nav-link::after {
+    display: none;
+  }
 }
 
-.navbar.dark-mode, .footer.dark-mode {
-  background-color: #222;
+/* Dark Mode Toggle Enhancement */
+#darkModeToggle {
+  background: transparent;
+  border: 2px solid #2d3436;
+  color: #2d3436;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
 
-.card.dark-mode, section.dark-mode {
-  background-color: #1e1e1e;
-  color: white;
+body.dark-mode #darkModeToggle {
+  border-color: #f5f6fa;
+  color: #f5f6fa;
 }
 
-.btn.dark-mode {
-  background-color: #333;
-  color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  transition: color 0.3s;
-}
-
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode h4, 
-body.dark-mode h5, 
-body.dark-mode h6 {
-  color: #ffffff;
+#darkModeToggle:hover {
+  background: rgba(9, 132, 227, 0.1);
+  transform: translateY(-1px);
 }
