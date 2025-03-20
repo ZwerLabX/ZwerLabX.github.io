@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const generatePassword = document.getElementById("generatePassword");
     const displayPassword = document.getElementById("displayPassword");
     const passwordLength = document.getElementById("passwordLength");
+    const lengthValue = document.getElementById("lengthValue");
     const copyPassword = document.getElementById("copyPassword");
     const downloadPassword = document.getElementById("downloadPassword");
     const includeUppercase = document.getElementById("includeUppercase");
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const historyListElement = document.getElementById("historyList");
     const clearHistoryButton = document.getElementById("clearHistory");
     const passwordStrength = document.getElementById("passwordStrength");
+    const strengthLabel = document.getElementById("strengthLabel");
+    const passwordContainer = document.getElementById("passwordContainer");
     
     // Initialize password history
     let historyList = JSON.parse(localStorage.getItem("passwordHistory")) || [];
@@ -26,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let darkMode = localStorage.getItem("darkMode");
         
         if (darkMode === null) {
+            // If no preference is stored, use system preference
             darkMode = prefersDark.matches;
+            localStorage.setItem("darkMode", darkMode);
         } else {
             darkMode = darkMode === "true";
         }
@@ -50,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("darkMode", isDark);
     }
 
-    // Initialize dark mode
+    // Initialize dark mode before anything else
     initializeDarkMode();
 
     // Dark mode toggle functionality
@@ -61,8 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Password generation functions
-    function generateRandomPassword(length) {
+    // Password length slider
+    if (passwordLength && lengthValue) {
+        passwordLength.addEventListener("input", () => {
+            lengthValue.textContent = passwordLength.value;
+        });
+    }
+
+    // Enhanced password generation
+    function generateSecurePassword(length) {
         const charSets = {
             uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             lowercase: "abcdefghijklmnopqrstuvwxyz",
@@ -71,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         let chars = "";
+        let password = "";
+        
+        // Add selected character sets
         if (includeUppercase?.checked) chars += charSets.uppercase;
         if (includeLowercase?.checked) chars += charSets.lowercase;
         if (includeNumbers?.checked) chars += charSets.numbers;
@@ -81,45 +96,50 @@ document.addEventListener("DOMContentLoaded", function () {
             return "";
         }
 
-        let password = "";
-        const array = new Uint32Array(length);
-        crypto.getRandomValues(array);
-        
-        for (let i = 0; i < length; i++) {
-            password += chars[array[i] % chars.length];
+        // Ensure at least one character from each selected set
+        const selectedSets = [];
+        if (includeUppercase?.checked) selectedSets.push(charSets.uppercase);
+        if (includeLowercase?.checked) selectedSets.push(charSets.lowercase);
+        if (includeNumbers?.checked) selectedSets.push(charSets.numbers);
+        if (includeSymbols?.checked) selectedSets.push(charSets.symbols);
+
+        // Generate initial characters from each set
+        selectedSets.forEach(set => {
+            const array = new Uint32Array(1);
+            crypto.getRandomValues(array);
+            password += set[array[0] % set.length];
+        });
+
+        // Fill the rest randomly
+        const remainingLength = length - selectedSets.length;
+        if (remainingLength > 0) {
+            const array = new Uint32Array(remainingLength);
+            crypto.getRandomValues(array);
+            
+            for (let i = 0; i < remainingLength; i++) {
+                password += chars[array[i] % chars.length];
+            }
         }
 
-        return password;
+        // Shuffle the password
+        return password.split('').sort(() => Math.random() - 0.5).join('');
     }
 
     function checkPasswordStrength(password) {
-        let strength = 0;
-        const checks = [
-            password.length >= 12,
-            /[A-Z]/.test(password),
-            /[a-z]/.test(password),
-            /[0-9]/.test(password),
-            /[^A-Za-z0-9]/.test(password)
-        ];
+        const result = zxcvbn(password);
+        const strength = result.score; // 0-4
         
-        strength = checks.filter(Boolean).length;
-
-        if (passwordStrength) {
-            const percentage = (strength / checks.length) * 100;
-            passwordStrength.style.width = `${percentage}%`;
-            passwordStrength.classList.remove("bg-danger", "bg-warning", "bg-success");
-            
-            if (strength <= 2) {
-                passwordStrength.classList.add("bg-danger");
-                passwordStrength.setAttribute("aria-label", "Weak password");
-            } else if (strength <= 3) {
-                passwordStrength.classList.add("bg-warning");
-                passwordStrength.setAttribute("aria-label", "Moderate password");
-            } else {
-                passwordStrength.classList.add("bg-success");
-                passwordStrength.setAttribute("aria-label", "Strong password");
-            }
+        const colors = ['#dc3545', '#dc3545', '#ffc107', '#28a745', '#28a745'];
+        const messages = ['Very Weak', 'Weak', 'Moderate', 'Strong', 'Very Strong'];
+        
+        if (passwordStrength && strengthLabel) {
+            passwordStrength.style.width = `${(strength + 1) * 20}%`;
+            passwordStrength.style.backgroundColor = colors[strength];
+            strengthLabel.textContent = messages[strength];
+            strengthLabel.style.color = colors[strength];
         }
+        
+        return strength;
     }
 
     function updateHistory() {
@@ -127,63 +147,75 @@ document.addEventListener("DOMContentLoaded", function () {
         
         historyListElement.innerHTML = "";
         historyList.forEach((pwd, index) => {
-            const listItem = document.createElement("li");
-            listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-            listItem.innerHTML = `
+            const li = document.createElement("li");
+            li.className = "history-item";
+            li.innerHTML = `
                 <span class="password-text">${pwd}</span>
-                <div class="btn-group">
-                    <button class="btn btn-sm btn-outline-primary copy-btn" data-index="${index}" aria-label="Copy password">
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-primary copy-btn" data-index="${index}">
                         Copy
                     </button>
-                    <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}" aria-label="Delete password">
+                    <button class="btn btn-outline-danger delete-btn" data-index="${index}">
                         Delete
                     </button>
                 </div>
             `;
-            historyListElement.appendChild(listItem);
+            historyListElement.appendChild(li);
         });
         
         localStorage.setItem("passwordHistory", JSON.stringify(historyList));
     }
 
     // Event Listeners
-    document.addEventListener("click", function(event) {
-        if (event.target.classList.contains("copy-btn")) {
-            const index = event.target.getAttribute("data-index");
-            navigator.clipboard.writeText(historyList[index])
-                .then(() => {
-                    event.target.textContent = "Copied!";
-                    setTimeout(() => {
-                        event.target.textContent = "Copy";
-                    }, 2000);
-                })
-                .catch(() => alert("Failed to copy password"));
-        }
-
-        if (event.target.classList.contains("delete-btn")) {
-            const index = event.target.getAttribute("data-index");
-            historyList.splice(index, 1);
-            updateHistory();
-        }
-    });
-
     if (generatePassword) {
         generatePassword.addEventListener("click", function() {
-            const length = parseInt(passwordLength?.value || "12");
+            const length = parseInt(passwordLength?.value || "16");
             if (isNaN(length) || length < 8 || length > 64) {
                 alert("Password length must be between 8 and 64 characters.");
                 return;
             }
             
-            const password = generateRandomPassword(length);
+            const password = generateSecurePassword(length);
             if (password && displayPassword) {
                 displayPassword.textContent = password;
-                displayPassword.style.display = "block";
-                if (copyPassword) copyPassword.style.display = "inline-block";
-                if (downloadPassword) downloadPassword.style.display = "inline-block";
-                historyList.unshift(password);
-                updateHistory();
+                passwordContainer.style.display = "block";
                 checkPasswordStrength(password);
+                historyList.unshift(password);
+                if (historyList.length > 10) historyList.pop();
+                updateHistory();
+            }
+        });
+    }
+
+    if (copyPassword) {
+        copyPassword.addEventListener("click", function() {
+            const password = displayPassword.textContent;
+            if (password) {
+                navigator.clipboard.writeText(password)
+                    .then(() => {
+                        copyPassword.textContent = "Copied!";
+                        setTimeout(() => {
+                            copyPassword.textContent = "Copy to Clipboard";
+                        }, 2000);
+                    })
+                    .catch(() => alert("Failed to copy password"));
+            }
+        });
+    }
+
+    if (downloadPassword) {
+        downloadPassword.addEventListener("click", function() {
+            const password = displayPassword.textContent;
+            if (password) {
+                const blob = new Blob([password], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'password.txt';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
             }
         });
     }
@@ -192,6 +224,28 @@ document.addEventListener("DOMContentLoaded", function () {
         clearHistoryButton.addEventListener("click", function() {
             if (confirm("Are you sure you want to clear all password history?")) {
                 historyList = [];
+                updateHistory();
+            }
+        });
+    }
+
+    // History item actions
+    if (historyListElement) {
+        historyListElement.addEventListener("click", function(event) {
+            const button = event.target.closest("button");
+            if (!button) return;
+
+            const index = button.getAttribute("data-index");
+            
+            if (button.classList.contains("copy-btn")) {
+                navigator.clipboard.writeText(historyList[index])
+                    .then(() => {
+                        button.textContent = "Copied!";
+                        setTimeout(() => button.textContent = "Copy", 2000);
+                    })
+                    .catch(() => alert("Failed to copy password"));
+            } else if (button.classList.contains("delete-btn")) {
+                historyList.splice(index, 1);
                 updateHistory();
             }
         });

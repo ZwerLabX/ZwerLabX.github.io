@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Ahmed Medhat">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="rating" content="general">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="google-site-verification" content="uH9_K4OCJ-IdWrzunTfHCkUa8rN72RCsQBCaAdMLqDw" />
-    
     <title>ZwerLab - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -23,7 +17,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="password-generator.html">Tools</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                            🛠️ Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
+                            <li><a class="dropdown-item" href="scientific-tools.html">🔬 Scientific Tools</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -44,19 +48,37 @@
 
     <main class="container my-5">
         <div class="row g-4">
-            <div class="col-md-6">
+            <div class="col-md-6 col-lg-3">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h2 class="card-title">Password Generator</h2>
+                        <h2 class="card-title h5">Password Generator</h2>
                         <p class="card-text">Generate secure passwords with our advanced tool.</p>
                         <a href="password-generator.html" class="btn btn-primary">Try it now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-lg-3">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h2 class="card-title">Latest Blog Posts</h2>
+                        <h2 class="card-title h5">Text Tools</h2>
+                        <p class="card-text">Encode, decode, and manipulate text easily.</p>
+                        <a href="text-tools.html" class="btn btn-primary">Try it now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title h5">Scientific Tools</h2>
+                        <p class="card-text">Essential tools for scientific calculations.</p>
+                        <a href="scientific-tools.html" class="btn btn-primary">Try it now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title h5">Latest Blog Posts</h2>
                         <p class="card-text">Check out our latest articles and tutorials.</p>
                         <a href="blog.html" class="btn btn-primary">Read more</a>
                     </div>

@@ -50,6 +50,16 @@
         body.dark-mode .featured-post {
             background: linear-gradient(45deg, rgba(116, 185, 255, 0.1), rgba(162, 155, 254, 0.1));
         }
+        .article-content {
+            display: none;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        body.dark-mode .article-content {
+            background: rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -62,7 +72,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="password-generator.html">Tools</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                            🛠️ Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
+                            <li><a class="dropdown-item" href="scientific-tools.html">🔬 Scientific Tools</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -89,7 +109,48 @@
                     <h2>Understanding Modern Password Security</h2>
                     <p class="blog-date">March 15, 2025</p>
                     <p>Dive deep into the world of modern password security. Learn about the latest best practices, common vulnerabilities, and how to keep your digital life secure.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <button class="btn btn-primary read-more" data-article="password-security">Read More</button>
+                    
+                    <!-- Password Security Article Content -->
+                    <div id="password-security-article" class="article-content">
+                        <h3>Password Security Fundamentals</h3>
+                        <p>Password security continues to be a critical component of digital safety. Despite the rise of additional authentication methods, passwords remain the primary defense for most accounts.</p>
+                        
+                        <h4>Current Best Practices</h4>
+                        <ul>
+                            <li><strong>Password Length vs. Complexity:</strong> Focus on longer passwords (12+ characters) rather than just complex ones. Lengthy passphrases are more secure and easier to remember.</li>
+                            <li><strong>Unique Passwords:</strong> Use different passwords for different services to prevent credential stuffing attacks.</li>
+                            <li><strong>Password Managers:</strong> Utilize dedicated password management tools to generate, store, and auto-fill strong, unique passwords.</li>
+                            <li><strong>Multi-Factor Authentication (MFA):</strong> Implement MFA whenever possible as an additional security layer beyond passwords.</li>
+                            <li><strong>Regular Security Audits:</strong> Periodically check for compromised accounts through services like Have I Been Pwned.</li>
+                        </ul>
+
+                        <h4>Common Vulnerabilities</h4>
+                        <ul>
+                            <li><strong>Credential Stuffing:</strong> Attackers use leaked username/password combinations on multiple services.</li>
+                            <li><strong>Brute Force Attacks:</strong> Automated programs attempt to guess passwords through trial and error.</li>
+                            <li><strong>Phishing Attacks:</strong> Deceptive communications trick users into revealing their credentials.</li>
+                            <li><strong>Password Spraying:</strong> Attackers try common passwords against many accounts.</li>
+                            <li><strong>Keyloggers:</strong> Malware that records keystrokes to capture password information.</li>
+                        </ul>
+
+                        <h4>NIST Password Guidelines (2023-2024)</h4>
+                        <ul>
+                            <li>Encourage passwords of at least 12 characters</li>
+                            <li>Remove periodic password change requirements</li>
+                            <li>Eliminate complex character requirements</li>
+                            <li>Screen new passwords against commonly used/compromised passwords</li>
+                            <li>Allow paste functionality in password fields</li>
+                        </ul>
+
+                        <h4>Emerging Password Alternatives</h4>
+                        <ul>
+                            <li><strong>Passkeys:</strong> FIDO2-based authentication that eliminates passwords entirely</li>
+                            <li><strong>Biometric Authentication:</strong> Fingerprints, facial recognition, and other biological identifiers</li>
+                            <li><strong>Hardware Security Keys:</strong> Physical devices that provide cryptographic proof of identity</li>
+                            <li><strong>Zero-knowledge Proofs:</strong> Cryptographic methods that verify identity without revealing passwords</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <img src="images/Password-Security.svg" alt="Password Security" class="img-fluid rounded">
@@ -100,25 +161,25 @@
         <div class="row g-4">
             <div class="col-md-4">
                 <article class="card blog-card h-100">
-                    <img src="images/web-design.svg" alt="Web Development" class="blog-image">
+                    <img src="images/web-development.svg" alt="Web Development" class="blog-image">
                     <div class="card-body">
                         <span class="blog-tag bg-info text-white">Tutorial</span>
                         <h3 class="card-title h5">Getting Started with Web Development</h3>
                         <p class="blog-date">March 10, 2025</p>
                         <p class="blog-excerpt">Learn the fundamentals of web development with our comprehensive guide for beginners.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                        <button class="btn btn-outline-primary read-more" data-article="web-dev">Read More</button>
                     </div>
                 </article>
             </div>
             <div class="col-md-4">
                 <article class="card blog-card h-100">
-                    <img src="images/genius.svg" alt="AI" class="blog-image">
+                    <img src="images/AI.svg" alt="AI" class="blog-image">
                     <div class="card-body">
                         <span class="blog-tag bg-success text-white">Technology</span>
                         <h3 class="card-title h5">The Future of AI in Development</h3>
                         <p class="blog-date">March 8, 2025</p>
                         <p class="blog-excerpt">Explore how artificial intelligence is shaping the future of software development.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                        <button class="btn btn-outline-primary read-more" data-article="ai-future">Read More</button>
                     </div>
                 </article>
             </div>
@@ -130,7 +191,7 @@
                         <h3 class="card-title h5">Cloud Computing Essentials</h3>
                         <p class="blog-date">March 5, 2025</p>
                         <p class="blog-excerpt">Understanding the basics of cloud computing and its impact on modern development.</p>
-                        <a href="#" class="btn btn-outline-primary">Read More</a>
+                        <button class="btn btn-outline-primary read-more" data-article="cloud-computing">Read More</button>
                     </div>
                 </article>
             </div>
@@ -143,5 +204,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const articleId = this.getAttribute('data-article');
+                    const articleContent = document.getElementById(`${articleId}-article`);
+                    
+                    if (articleContent) {
+                        if (articleContent.style.display === 'none' || !articleContent.style.display) {
+                            articleContent.style.display = 'block';
+                            this.textContent = 'Show Less';
+                        } else {
+                            articleContent.style.display = 'none';
+                            this.textContent = 'Read More';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

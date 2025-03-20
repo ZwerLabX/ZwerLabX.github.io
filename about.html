@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - ZwerLab</title>
+    <title>About Me | ZwerLab</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 2rem auto;
+            display: block;
+        }
+        .skill-tag {
+            background: linear-gradient(45deg, #0984e3, #6c5ce7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.25rem;
+            display: inline-block;
+        }
+        .interests-section {
+            background: linear-gradient(45deg, rgba(9, 132, 227, 0.1), rgba(108, 92, 231, 0.1));
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+        body.dark-mode .interests-section {
+            background: linear-gradient(45deg, rgba(116, 185, 255, 0.1), rgba(162, 155, 254, 0.1));
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">ZwerLab</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -17,13 +48,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="password-generator.html">Tools</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                            🛠️ Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
+                            <li><a class="dropdown-item" href="scientific-tools.html">🔬 Scientific Tools</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                     <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <button id="darkModeToggle" class="btn btn-outline-light ms-3">
-                    <span id="darkModeIcon">🌕</span>
+                    <span id="darkModeIcon">🌑</span>
                 </button>
             </div>
         </div>
@@ -31,38 +72,61 @@
 
     <header class="page-header">
         <div class="container">
-            <h1>About ZwerLab</h1>
-            <p>Your hub for tools, knowledge, and innovation.</p>
+            <h1>About Me</h1>
+            <p class="lead">Science Student & Tech Enthusiast</p>
         </div>
     </header>
 
     <main class="container my-5">
-        <h2>Welcome to ZwerLab!</h2>
-        <p>
-            Hey there! I’m <strong>Zwer</strong>, a programmer and tech enthusiast who loves building useful tools and exploring new ideas.
-            This website is my personal space where I share my projects, security insights, and tech-related topics.
-        </p>
-        <h3>Why I Built This Website</h3>
-        <p>
-            I’ve always been passionate about technology, ethical hacking, and problem-solving. My goal is to provide valuable tools and
-            resources that help people navigate the digital world more securely.
-        </p>
-        <h3>What You’ll Find Here</h3>
-        <ul>
-            <li><strong>Tools & Projects:</strong> Practical tools like the 
-                <a href="password-generator.html" class="highlight-link">Password Generator</a>.
-            </li>
-            <li><strong>Tech & Security:</strong> Insights on cybersecurity, programming, and digital privacy.</li>
-            <li><strong>More Coming Soon:</strong> The website is constantly evolving with new features.</li>
-        </ul>
-        <p>
-            If you have any feedback, suggestions, or just want to say hi, feel free to 
-            <a href="contact.html" class="highlight-link">reach out</a>. Let’s build something great together! 🚀
-        </p>
+        <div class="about-section">
+            <img src="images/student.png" alt="Profile" class="profile-image">
+            
+            <div class="text-center mb-5">
+                <h2>Hi, I'm Zwer!</h2>
+                <p class="lead">A passionate science student exploring the intersection of technology and scientific discovery.</p>
+            </div>
+
+            <div class="mb-5">
+                <h3>My Journey</h3>
+                <p>As a student at the Faculty of Science, I'm constantly amazed by how technology can enhance our understanding of the natural world. This website is my digital laboratory where I combine my love for science with my passion for programming.</p>
+                <p>Through ZwerLab, I share my experiences, showcase my projects, and provide useful tools that reflect my interests in both scientific computing and web development.</p>
+            </div>
+
+            <div class="interests-section">
+                <h3>What Drives Me</h3>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h4>🔬 Scientific Curiosity</h4>
+                        <p>My academic journey in science has taught me to approach problems with analytical thinking and systematic methodology.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>💻 Technology Passion</h4>
+                        <p>I love exploring how technology can be used to solve real-world problems and make complex concepts more accessible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <h3>Skills & Interests</h3>
+                <div class="mb-3">
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">Scientific Computing</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Research</span>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <h3>Let's Connect!</h3>
+                <p>I'm always excited to collaborate on interesting projects or discuss ideas at the intersection of science and technology.</p>
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>Made with ❤️ by Zwer.</p>
+    <footer>
+        <p>Made with ❤️ by Zwer</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

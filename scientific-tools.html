@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Tools | ZwerLab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .tool-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(45deg, rgba(9, 132, 227, 0.05), rgba(108, 92, 231, 0.05));
+        }
+        body.dark-mode .tool-section {
+            background: linear-gradient(45deg, rgba(116, 185, 255, 0.05), rgba(162, 155, 254, 0.05));
+        }
+        .result-display {
+            font-family: 'Courier New', monospace;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.05);
+            margin-top: 1rem;
+        }
+        body.dark-mode .result-display {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ZwerLab</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                            🛠️ Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
+                            <li><a class="dropdown-item active" href="scientific-tools.html">🔬 Scientific Tools</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <span id="darkModeIcon">🌑</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Scientific Tools</h1>
+            <p class="lead">Essential calculators and converters for scientific work</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Unit Converter -->
+                <div class="tool-section">
+                    <h2>Unit Converter</h2>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="unitInput" class="form-label">Value</label>
+                            <input type="number" class="form-control" id="unitInput" step="any">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="unitType" class="form-label">Category</label>
+                            <select class="form-select" id="unitType">
+                                <option value="length">Length</option>
+                                <option value="mass">Mass</option>
+                                <option value="temperature">Temperature</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="unitFrom" class="form-label">From</label>
+                            <select class="form-select" id="unitFrom"></select>
+                        </div>
+                    </div>
+                    <div id="unitResult" class="result-display mt-3"></div>
+                </div>
+
+                <!-- Scientific Calculator -->
+                <div class="tool-section">
+                    <h2>Scientific Calculator</h2>
+                    <div class="calculator-display mb-3">
+                        <input type="text" class="form-control form-control-lg" id="calcDisplay" readonly>
+                    </div>
+                    <div class="row g-2">
+                        <!-- Calculator buttons will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Zwer</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
