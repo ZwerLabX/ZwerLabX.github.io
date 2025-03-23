@@ -25,6 +25,38 @@
             top: 50%;
             transform: translateY(-50%);
         }
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0984e3;
+            color: white;
+            font-size: 14px;
+            margin-left: 0.5rem;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+        .info-icon:hover {
+            background: #6c5ce7;
+            transform: scale(1.1);
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            z-index: 1000;
+            max-width: 200px;
+            display: none;
+        }
+        .info-icon:hover .tooltip {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +103,10 @@
             <div class="col-md-8">
                 <!-- Base64 Encoder/Decoder -->
                 <div class="tool-section">
-                    <h2>Base64 Encoder/Decoder</h2>
+                    <h2>
+                        Base64 Encoder/Decoder
+                        <span class="info-icon" title="Base64 encoding converts binary data into text format using 64 characters (A-Z, a-z, 0-9, +, /)">!</span>
+                    </h2>
                     <div class="mb-3">
                         <label for="base64Input" class="form-label">Input Text</label>
                         <textarea class="form-control" id="base64Input" rows="4"></textarea>
@@ -88,7 +123,10 @@
 
                 <!-- URL Encoder/Decoder -->
                 <div class="tool-section">
-                    <h2>URL Encoder/Decoder</h2>
+                    <h2>
+                        URL Encoder/Decoder
+                        <span class="info-icon" title="URL encoding converts special characters into a format that can be transmitted over the Internet using %XX format">!</span>
+                    </h2>
                     <div class="mb-3">
                         <label for="urlInput" class="form-label">Input Text</label>
                         <textarea class="form-control" id="urlInput" rows="4"></textarea>
@@ -105,7 +143,10 @@
 
                 <!-- HTML Encoder/Decoder -->
                 <div class="tool-section">
-                    <h2>HTML Encoder/Decoder</h2>
+                    <h2>
+                        HTML Encoder/Decoder
+                        <span class="info-icon" title="HTML encoding converts special characters into HTML entities to safely display them on web pages">!</span>
+                    </h2>
                     <div class="mb-3">
                         <label for="htmlInput" class="form-label">Input Text</label>
                         <textarea class="form-control" id="htmlInput" rows="4"></textarea>
