@@ -26,6 +26,29 @@
         body.dark-mode .result-display {
             background: rgba(255, 255, 255, 0.1);
         }
+        .search-container {
+        position: relative;
+        margin-bottom: 1.5rem;
+        }
+
+        .highlight-match {
+            background-color: rgba(255, 235, 59, 0.3);
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        .constant-card.search-match {
+            border: 2px solid #0984e3;
+            margin: -1px; /* Compensate for border */
+        }
+
+        body.dark-mode .highlight-match {
+            background-color: rgba(255, 235, 59, 0.15);
+        }
+
+        body.dark-mode .constant-card.search-match {
+            border-color: #6c5ce7;
+        }
         .info-icon {
             display: inline-flex;
             align-items: center;
@@ -63,8 +86,14 @@
             background: rgba(255, 255, 255, 0.05);
         }
         .constant-nav-item.active {
-            background: linear-gradient(45deg, #0984e3, #6c5ce7);
-            color: white;
+            background: linear-gradient(135deg, #0984e3, #6c5ce7) !important;
+            box-shadow: 0 4px 8px rgba(9, 132, 227, 0.3);
+            transform: scale(1.05);
+            color: white !important;
+        }
+        .constant-nav-item:not(.active):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .constant-card {
             background: rgba(255, 255, 255, 0.5);
@@ -77,8 +106,13 @@
             background: rgba(255, 255, 255, 0.05);
         }
         .constant-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-left: 2px solid #0984e3;
+        }
+        body.dark-mode .constant-card:hover {
+            box-shadow: 0 6px 12px rgba(108, 92, 231, 0.2);
+            border-left-color: #6c5ce7;
         }
         .constant-name {
             font-weight: 600;
@@ -99,14 +133,136 @@
             color: #aaa;
         }
         .constants-section {
+            will-change: transform, box-shadow; /* Optimizes performance */
+            transform: translateZ(0); /* GPU acceleration */
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 8px;
+            margin-bottom: 1.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #0984e3 rgba(0, 0, 0, 0.05);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        .constants-section:not(.active) {
             display: none;
         }
+        body.dark-mode .constants-section {
+            scrollbar-color: #6c5ce7 rgba(255, 255, 255, 0.05);
+        }
         .constants-section.active {
-            display: block;
+            display: block !important; /* Override with important */
+            opacity: 1;
+            border-left: 4px solid #0984e3;
+            box-shadow: 0 0 20px rgba(9, 132, 227, 0.15);
+            padding-left: 1.25rem;
+            margin-left: -1.25rem; /* Offsets padding for perfect alignment */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        body.dark-mode .constants-section.active {
+            border-left-color: #6c5ce7;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.25);
+        }
+
+        /* Active nav item styling (already exists but ensure this is present) */
+        
+        .constants-section::-webkit-scrollbar {
+            width: 8px;
+        }
+        .constants-section::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        .constants-section::-webkit-scrollbar-thumb {
+            background: #0984e3;
+            border-radius: 4px;
+        }
+        body.dark-mode .constants-section::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        body.dark-mode .constants-section::-webkit-scrollbar-thumb {
+            background: #6c5ce7;
+        }
+        @media (max-width: 768px) {
+            .constants-section {
+                max-height: 300px;
+            }
+        }
+        .search-results-container {
+            position: absolute;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            margin-top: 0.25rem;
+        }
+
+        body.dark-mode .search-results-container {
+            background: #1e1e1e;
+            border: 1px solid #333;
+        }
+
+        .search-result-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #eee;
+        }
+
+        body.dark-mode .search-result-item {
+            border-bottom-color: #333;
+        }
+
+        .search-result-item:hover {
+            background: rgba(9, 132, 227, 0.1);
+        }
+
+        .search-result-item .section-badge {
+            font-size: 0.75rem;
+            background: #0984e3;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+
+        body.dark-mode .search-result-item .section-badge {
+            background: #6c5ce7;
+        }
+
+        .no-results-item {
+            padding: 0.75rem 1rem;
+            color: #666;
+        }
+        @keyframes highlightFlash {
+            0% { box-shadow: 0 0 0 rgba(9, 132, 227, 0); }
+            50% { box-shadow: 0 0 30px rgba(9, 132, 227, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(9, 132, 227, 0.15); }
+        }
+        @keyframes sectionActivePulse {
+            0% { box-shadow: 0 0 0px rgba(9, 132, 227, 0); }
+            50% { 
+                box-shadow: 0 0 25px rgba(9, 132, 227, 0.3);
+                border-left-width: 6px;
+            }
+            100% { 
+                box-shadow: 0 0 20px rgba(9, 132, 227, 0.15);
+                border-left-width: 4px;
+            }
+        }
+        body.dark-mode @keyframes sectionActivePulse {
+            50% { 
+                box-shadow: 0 0 25px rgba(108, 92, 231, 0.4);
+                border-left-width: 6px;
+            }
         }
     </style>
 </head>
-<body>
+<body data-page="scientific-tools">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">ZwerLab</a>
@@ -117,7 +273,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             🛠️ Tools
                         </a>
                         <ul class="dropdown-menu">
@@ -150,31 +306,88 @@
             <div class="col-md-8">
                 <!-- Unit Converter -->
                 <div class="tool-section">
-                    <h2>Unit Converter</h2>
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <label for="unitInput" class="form-label">Value</label>
-                            <input type="number" class="form-control" id="unitInput" step="any">
+                    <h2 class="d-flex align-items-center gap-2">
+                        <span class="converter-icon">🔄</span> 
+                        Unit Converter
+                        <span class="info-icon" title="Convert between 50+ units">i</span>
+                    </h2>
+                    
+                    <div class="converter-container">
+                        <!-- Input Group -->
+                        <div class="converter-input-group">
+                            <div class="input-row">
+                                <div class="input-box">
+                                    <label for="unitValue">Value</label>
+                                    <input type="number" id="unitValue" class="form-control" placeholder="0.00" step="any">
+                                </div>
+                                
+                                <div class="swap-units-btn" id="swapUnits">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                    </svg>
+                                </div>
+                                
+                                <div class="input-box">
+                                    <label for="unitResult">Result</label>
+                                    <input type="text" id="unitResult" class="form-control" readonly>
+                                </div>
+                            </div>
+                            
+                            <!-- Unit Selection -->
+                            <div class="unit-selection">
+                                <div class="unit-select-box">
+                                    <label for="unitCategory">Category</label>
+                                    <select id="unitCategory" class="form-select">
+                                        <option value="length">Length</option>
+                                        <option value="mass">Mass</option>
+                                        <option value="temperature">Temperature</option>
+                                        <option value="time">Time</option>
+                                        <option value="volume">Volume</option>
+                                        <option value="velocity">Velocity</option>
+                                        <option value="pressure">Pressure</option>
+                                        <option value="energy">Energy</option>
+                                        <option value="power">Power</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="unit-select-box">
+                                    <label for="unitFrom">From</label>
+                                    <select id="unitFrom" class="form-select"></select>
+                                </div>
+                                
+                                <div class="unit-select-box">
+                                    <label for="unitTo">To</label>
+                                    <select id="unitTo" class="form-select"></select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="unitType" class="form-label">Category</label>
-                            <select class="form-select" id="unitType">
-                                <option value="length">Length</option>
-                                <option value="mass">Mass</option>
-                                <option value="temperature">Temperature</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="unitFrom" class="form-label">From</label>
-                            <select class="form-select" id="unitFrom"></select>
+                        
+                        <!-- Conversion History -->
+                        <div class="conversion-history">
+                            <h5>Recent Conversions</h5>
+                            <ul id="conversionHistory"></ul>
                         </div>
                     </div>
-                    <div id="unitResult" class="result-display mt-3"></div>
                 </div>
 
                 <!-- Scientific Constants -->
                 <div class="tool-section">
                     <h2>Scientific Constants</h2>
+                    <div class="search-container mb-3">
+                        <div class="input-group">
+                            <input type="text" 
+                                   id="constantsSearch" 
+                                   class="form-control" 
+                                   placeholder="Search constants (e.g., 'Planck' or '6.626')"
+                                   aria-label="Search constants">
+                            <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                                Clear
+                            </button>
+                        </div>
+                        <div id="searchResultsCount" class="text-muted small mt-1"></div>
+                        <!-- Add this new line -->
+                        <div id="searchResults" class="search-results-container"></div>
+                    </div> 
                     <div class="constants-nav">
                         <div class="constant-nav-item active" data-section="universal">Universal</div>
                         <div class="constant-nav-item" data-section="electromagnetic">Electromagnetic</div>
@@ -182,8 +395,9 @@
                         <div class="constant-nav-item" data-section="physicoChem">Physico-Chemical</div>
                         <div class="constant-nav-item" data-section="adopted">Adopted Values</div>
                         <div class="constant-nav-item" data-section="other">Other</div>
+                        
                     </div>
-
+                          
                     <!-- Universal Constants -->
                     <div id="universal" class="constants-section active">
                         <div class="constant-card">
@@ -396,30 +610,30 @@
                             <div class="constant-name">First Radiation Constant (c₁)</div>
                             <div class="constant-value">3.74177153 × 10⁻¹⁶</div>
                             <div class="constant-unit">W·m²</div>
-                        </div>
+                    </div>
                         <!-- Adopted Values Section -->
-                        <div id="adopted" class="constants-section">
-                            <div class="constant-card">
-                                <div class="constant-name">Standard Gravity (g)</div>
-                                <div class="constant-value">9.80665</div>
-                                <div class="constant-unit">m/s²</div>
-                            </div>
-                            <div class="constant-card">
-                                <div class="constant-name">Standard Atmosphere (atm)</div>
-                                <div class="constant-value">101325</div>
-                                <div class="constant-unit">Pa</div>
-                            </div>
-                            <div class="constant-card">
-                                <div class="constant-name">von Klitzing Constant (Rk-90)</div>
-                                <div class="constant-value">25812.807</div>
-                                <div class="constant-unit">Ω</div>
-                            </div>
-                            <div class="constant-card">
-                                <div class="constant-name">Josephson Constant (KJ-90)</div>
-                                <div class="constant-value">4.835979 × 10¹⁴</div>
-                                <div class="constant-unit">Hz/V</div>
-                            </div>
+                    <div id="adopted" class="constants-section">
+                        <div class="constant-card">
+                            <div class="constant-name">Standard Gravity (g)</div>
+                            <div class="constant-value">9.80665</div>
+                            <div class="constant-unit">m/s²</div>
                         </div>
+                        <div class="constant-card">
+                            <div class="constant-name">Standard Atmosphere (atm)</div>
+                            <div class="constant-value">101325</div>
+                            <div class="constant-unit">Pa</div>
+                        </div>
+                        <div class="constant-card">
+                            <div class="constant-name">von Klitzing Constant (Rk-90)</div>
+                            <div class="constant-value">25812.807</div>
+                            <div class="constant-unit">Ω</div>
+                        </div>
+                        <div class="constant-card">
+                            <div class="constant-name">Josephson Constant (KJ-90)</div>
+                            <div class="constant-value">4.835979 × 10¹⁴</div>
+                            <div class="constant-unit">Hz/V</div>
+                        </div>
+                    </div>
                         <div class="constant-card">
                             <div class="constant-name">Second Radiation Constant (c₂)</div>
                             <div class="constant-value">0.01438777</div>
@@ -432,16 +646,48 @@
                         </div>
                     </div>
 
-                    <!-- Placeholder for other sections -->
-                    <div id="physicoChem" class="constants-section">
-                        <!-- Will be added in next update -->
-                    </div>
-                    <div id="adopted" class="constants-section">
-                        <!-- Will be added in next update -->
-                    </div>
                     <div id="other" class="constants-section">
                         <!-- Will be added in next update -->
                     </div>
+                </div>
+            </div>
+        </div>
+            <!-- Periodic Table Integration -->
+        <div class="periodic-table-wrapper">
+            <!-- GG Trigger Element -->
+            <div class="gg-element">
+                <div class="gg-icon">⚛️</div>
+                <span class="gg-label">Elements</span>
+            </div>
+        
+            <!-- Periodic Table Container -->
+            <div class="periodic-table-container">
+                <div class="periodic-table-grid"></div>
+            </div>
+        </div>
+
+        <!-- Element Details Card (separate from wrapper) -->
+        <div class="element-details-card" id="elementPopup">
+            <div class="element-card-header" id="popupHeader">
+                <h3 class="element-name"></h3>
+                <span class="element-symbol"></span>
+            </div>
+            <div class="element-card-body">
+                <div class="element-property">
+                    <span>Atomic Number:</span>
+                    <span class="atomic-number"></span>
+                </div>
+                <div class="element-property">
+                    <span>Atomic Mass:</span>
+                    <span class="atomic-mass"></span>
+                </div>
+                <div class="element-property">
+                    <span>Electronegativity:</span>
+                    <span class="electronegativity"></span>
+                </div>
+                <div class="element-property">
+                    <span>Electron Configuration:</span>
+                    <span class="electron-config"></span>
                 </div>
             </div>
         </div>
@@ -453,111 +699,111 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Unit Converter Code
-            const unitInput = document.getElementById('unitInput');
-            const unitType = document.getElementById('unitType');
-            const unitFrom = document.getElementById('unitFrom');
-            const unitResult = document.getElementById('unitResult');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Unit Converter Code
+        //     const unitInput = document.getElementById('unitInput');
+        //     const unitType = document.getElementById('unitType');
+        //     const unitFrom = document.getElementById('unitFrom');
+        //     const unitResult = document.getElementById('unitResult');
+            
+        //     const conversions = {
+        //         length: {
+        //             meters: 1,
+        //             kilometers: 1000,
+        //             centimeters: 0.01,
+        //             millimeters: 0.001,
+        //             inches: 0.0254,
+        //             feet: 0.3048,
+        //             yards: 0.9144,
+        //             miles: 1609.344
+        //         },
+        //         mass: {
+        //             grams: 1,
+        //             kilograms: 1000,
+        //             milligrams: 0.001,
+        //             pounds: 453.592,
+        //             ounces: 28.3495
+        //         },
+        //         temperature: {
+        //             celsius: 'C',
+        //             fahrenheit: 'F',
+        //             kelvin: 'K'
+        //         }
+        //     };
 
-            const conversions = {
-                length: {
-                    meters: 1,
-                    kilometers: 1000,
-                    centimeters: 0.01,
-                    millimeters: 0.001,
-                    inches: 0.0254,
-                    feet: 0.3048,
-                    yards: 0.9144,
-                    miles: 1609.344
-                },
-                mass: {
-                    grams: 1,
-                    kilograms: 1000,
-                    milligrams: 0.001,
-                    pounds: 453.592,
-                    ounces: 28.3495
-                },
-                temperature: {
-                    celsius: 'C',
-                    fahrenheit: 'F',
-                    kelvin: 'K'
-                }
-            };
+        //     function updateUnitOptions() {
+        //         const type = unitType.value;
+        //         unitFrom.innerHTML = '';
+        //         Object.keys(conversions[type]).forEach(unit => {
+        //             const option = document.createElement('option');
+        //             option.value = unit;
+        //             option.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+        //             unitFrom.appendChild(option);
+        //         });
+        //         convertUnit();
+        //     }
 
-            function updateUnitOptions() {
-                const type = unitType.value;
-                unitFrom.innerHTML = '';
-                Object.keys(conversions[type]).forEach(unit => {
-                    const option = document.createElement('option');
-                    option.value = unit;
-                    option.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
-                    unitFrom.appendChild(option);
-                });
-                convertUnit();
-            }
+        //     function convertUnit() {
+        //         const value = parseFloat(unitInput.value);
+        //         if (isNaN(value)) {
+        //             unitResult.textContent = 'Please enter a valid number';
+        //             return;
+        //         }
 
-            function convertUnit() {
-                const value = parseFloat(unitInput.value);
-                if (isNaN(value)) {
-                    unitResult.textContent = 'Please enter a valid number';
-                    return;
-                }
+        //         const type = unitType.value;
+        //         const from = unitFrom.value;
 
-                const type = unitType.value;
-                const from = unitFrom.value;
+        //         if (type === 'temperature') {
+        //             const results = [];
+        //             Object.keys(conversions.temperature).forEach(to => {
+        //                 if (to !== from) {
+        //                     let converted;
+        //                     if (from === 'celsius') {
+        //                         converted = to === 'fahrenheit' ? (value * 9/5) + 32 : value + 273.15;
+        //                     } else if (from === 'fahrenheit') {
+        //                         const celsius = (value - 32) * 5/9;
+        //                         converted = to === 'celsius' ? celsius : celsius + 273.15;
+        //                     } else { // kelvin
+        //                         const celsius = value - 273.15;
+        //                         converted = to === 'celsius' ? celsius : (celsius * 9/5) + 32;
+        //                     }
+        //                     results.push(`${converted.toFixed(2)}°${conversions.temperature[to]}`);
+        //                 }
+        //             });
+        //             unitResult.textContent = results.join(' | ');
+        //         } else {
+        //             const baseValue = value * conversions[type][from];
+        //             const results = Object.entries(conversions[type])
+        //                 .filter(([unit]) => unit !== from)
+        //                 .map(([unit, factor]) => `${(baseValue / factor).toFixed(4)} ${unit}`);
+        //             unitResult.textContent = results.join(' | ');
+        //         }
+        //     }
 
-                if (type === 'temperature') {
-                    const results = [];
-                    Object.keys(conversions.temperature).forEach(to => {
-                        if (to !== from) {
-                            let converted;
-                            if (from === 'celsius') {
-                                converted = to === 'fahrenheit' ? (value * 9/5) + 32 : value + 273.15;
-                            } else if (from === 'fahrenheit') {
-                                const celsius = (value - 32) * 5/9;
-                                converted = to === 'celsius' ? celsius : celsius + 273.15;
-                            } else { // kelvin
-                                const celsius = value - 273.15;
-                                converted = to === 'celsius' ? celsius : (celsius * 9/5) + 32;
-                            }
-                            results.push(`${converted.toFixed(2)}°${conversions.temperature[to]}`);
-                        }
-                    });
-                    unitResult.textContent = results.join(' | ');
-                } else {
-                    const baseValue = value * conversions[type][from];
-                    const results = Object.entries(conversions[type])
-                        .filter(([unit]) => unit !== from)
-                        .map(([unit, factor]) => `${(baseValue / factor).toFixed(4)} ${unit}`);
-                    unitResult.textContent = results.join(' | ');
-                }
-            }
+        //     unitType.addEventListener('change', updateUnitOptions);
+        //     unitFrom.addEventListener('change', convertUnit);
+        //     unitInput.addEventListener('input', convertUnit);
 
-            unitType.addEventListener('change', updateUnitOptions);
-            unitFrom.addEventListener('change', convertUnit);
-            unitInput.addEventListener('input', convertUnit);
+        //     // Initialize the converter
+        //     updateUnitOptions();
 
-            // Initialize the converter
-            updateUnitOptions();
+        //     // Constants Navigation
+        //     const constantNavItems = document.querySelectorAll('.constant-nav-item');
+        //     const constantsSections = document.querySelectorAll('.constants-section');
 
-            // Constants Navigation
-            const constantNavItems = document.querySelectorAll('.constant-nav-item');
-            const constantsSections = document.querySelectorAll('.constants-section');
+        //     constantNavItems.forEach(item => {
+        //         item.addEventListener('click', () => {
+        //             // Remove active class from all items and sections
+        //             constantNavItems.forEach(i => i.classList.remove('active'));
+        //             constantsSections.forEach(s => s.classList.remove('active'));
 
-            constantNavItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    // Remove active class from all items and sections
-                    constantNavItems.forEach(i => i.classList.remove('active'));
-                    constantsSections.forEach(s => s.classList.remove('active'));
-
-                    // Add active class to clicked item and corresponding section
-                    item.classList.add('active');
-                    const sectionId = item.getAttribute('data-section');
-                    document.getElementById(sectionId).classList.add('active');
-                });
-            });
-        });
+        //             // Add active class to clicked item and corresponding section
+        //             item.classList.add('active');
+        //             const sectionId = item.getAttribute('data-section');
+        //             document.getElementById(sectionId).classList.add('active');
+        //         });
+        //     });
+        // });
     </script>
     <script src="assets/js/script.js"></script>
 </body>
