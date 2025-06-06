@@ -6,6 +6,80 @@
     <title>Scientific Tools | ZwerLab</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["WebApplication", "CollectionPage"],
+          "name": "Scientific Tools | ZwerLab",
+          "url": "https://yourdomain.com/scientific-tools.html",
+          "description": "Comprehensive suite of scientific tools including unit converters, physical constants reference, and periodic table for researchers, students, and engineers.",
+          "applicationCategory": ["EducationalApplication", "ScienceApplication"],
+          "operatingSystem": ["Any"],
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "creator": {
+            "@type": "Organization",
+            "name": "ZwerLab",
+            "url": "https://yourdomain.com"
+          },
+          "keywords": "scientific calculator, unit converter, physical constants, periodic table, physics tools, chemistry tools",
+          "hasPart": [
+            {
+              "@type": "WebApplication",
+              "name": "Unit Converter",
+              "description": "Convert between 50+ units of length, mass, temperature, time, volume, velocity, pressure, energy and power.",
+              "featureList": [
+                "Real-time conversion",
+                "Conversion history",
+                "Multiple unit categories"
+              ]
+            },
+            {
+              "@type": "Dataset",
+              "name": "Scientific Constants Reference",
+              "description": "Comprehensive database of 100+ physical constants with search functionality.",
+              "variableMeasured": [
+                "Universal constants",
+                "Electromagnetic constants",
+                "Atomic & nuclear constants",
+                "Physico-chemical constants"
+              ]
+            },
+            {
+              "@type": "WebApplication",
+              "name": "Interactive Periodic Table",
+              "description": "Detailed element properties with atomic data and electron configurations."
+            }
+          ],
+          "screenshot": {
+            "@type": "ImageObject",
+            "url": "https://yourdomain.com/images/scientific-tools-screenshot.png",
+            "width": "1280",
+            "height": "720"
+          },
+          "about": {
+            "@type": "Thing",
+            "name": "Scientific Education"
+          },
+          "educationalLevel": [
+            "HighSchool",
+            "Undergraduate",
+            "Graduate",
+            "Professional"
+          ],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://yourdomain.com/scientific-tools.html?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+    </script>
     <style>
         .tool-section {
             margin-bottom: 2rem;
@@ -698,113 +772,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     // Unit Converter Code
-        //     const unitInput = document.getElementById('unitInput');
-        //     const unitType = document.getElementById('unitType');
-        //     const unitFrom = document.getElementById('unitFrom');
-        //     const unitResult = document.getElementById('unitResult');
-            
-        //     const conversions = {
-        //         length: {
-        //             meters: 1,
-        //             kilometers: 1000,
-        //             centimeters: 0.01,
-        //             millimeters: 0.001,
-        //             inches: 0.0254,
-        //             feet: 0.3048,
-        //             yards: 0.9144,
-        //             miles: 1609.344
-        //         },
-        //         mass: {
-        //             grams: 1,
-        //             kilograms: 1000,
-        //             milligrams: 0.001,
-        //             pounds: 453.592,
-        //             ounces: 28.3495
-        //         },
-        //         temperature: {
-        //             celsius: 'C',
-        //             fahrenheit: 'F',
-        //             kelvin: 'K'
-        //         }
-        //     };
-
-        //     function updateUnitOptions() {
-        //         const type = unitType.value;
-        //         unitFrom.innerHTML = '';
-        //         Object.keys(conversions[type]).forEach(unit => {
-        //             const option = document.createElement('option');
-        //             option.value = unit;
-        //             option.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
-        //             unitFrom.appendChild(option);
-        //         });
-        //         convertUnit();
-        //     }
-
-        //     function convertUnit() {
-        //         const value = parseFloat(unitInput.value);
-        //         if (isNaN(value)) {
-        //             unitResult.textContent = 'Please enter a valid number';
-        //             return;
-        //         }
-
-        //         const type = unitType.value;
-        //         const from = unitFrom.value;
-
-        //         if (type === 'temperature') {
-        //             const results = [];
-        //             Object.keys(conversions.temperature).forEach(to => {
-        //                 if (to !== from) {
-        //                     let converted;
-        //                     if (from === 'celsius') {
-        //                         converted = to === 'fahrenheit' ? (value * 9/5) + 32 : value + 273.15;
-        //                     } else if (from === 'fahrenheit') {
-        //                         const celsius = (value - 32) * 5/9;
-        //                         converted = to === 'celsius' ? celsius : celsius + 273.15;
-        //                     } else { // kelvin
-        //                         const celsius = value - 273.15;
-        //                         converted = to === 'celsius' ? celsius : (celsius * 9/5) + 32;
-        //                     }
-        //                     results.push(`${converted.toFixed(2)}°${conversions.temperature[to]}`);
-        //                 }
-        //             });
-        //             unitResult.textContent = results.join(' | ');
-        //         } else {
-        //             const baseValue = value * conversions[type][from];
-        //             const results = Object.entries(conversions[type])
-        //                 .filter(([unit]) => unit !== from)
-        //                 .map(([unit, factor]) => `${(baseValue / factor).toFixed(4)} ${unit}`);
-        //             unitResult.textContent = results.join(' | ');
-        //         }
-        //     }
-
-        //     unitType.addEventListener('change', updateUnitOptions);
-        //     unitFrom.addEventListener('change', convertUnit);
-        //     unitInput.addEventListener('input', convertUnit);
-
-        //     // Initialize the converter
-        //     updateUnitOptions();
-
-        //     // Constants Navigation
-        //     const constantNavItems = document.querySelectorAll('.constant-nav-item');
-        //     const constantsSections = document.querySelectorAll('.constants-section');
-
-        //     constantNavItems.forEach(item => {
-        //         item.addEventListener('click', () => {
-        //             // Remove active class from all items and sections
-        //             constantNavItems.forEach(i => i.classList.remove('active'));
-        //             constantsSections.forEach(s => s.classList.remove('active'));
-
-        //             // Add active class to clicked item and corresponding section
-        //             item.classList.add('active');
-        //             const sectionId = item.getAttribute('data-section');
-        //             document.getElementById(sectionId).classList.add('active');
-        //         });
-        //     });
-        // });
-    </script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/periodic-table.js"></script>
 </body>
 </html>

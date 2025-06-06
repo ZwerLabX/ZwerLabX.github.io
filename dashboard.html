@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard | ZwerLab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Modern Dashboard Styles */
+        .dashboard-container {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: calc(100vh - 200px);
+        }
+
+        body.dark-mode .dashboard-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .stat-card {
+            background: rgba(45, 52, 54, 0.9);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            background: linear-gradient(45deg, #0984e3, #6c5ce7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark-mode .stat-value {
+            background: linear-gradient(45deg, #74b9ff, #a29bfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .activity-card {
+            height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #0984e3 transparent;
+        }
+
+        .activity-item {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .activity-item {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .activity-item:hover {
+            background: rgba(9, 132, 227, 0.1);
+            transform: translateX(5px);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 1rem;
+        }
+
+        body.dark-mode .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(9, 132, 227, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ZwerLab</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
+                            🛠️ Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
+                            <li><a class="dropdown-item" href="scientific-tools.html">🔬 Scientific Tools</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
+                    <span id="darkModeIcon">🌑</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Dashboard Overview</h1>
+            <p class="lead">Monitor your activity and quick access to tools</p>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="container">
+            <!-- Stats Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">🔐</div>
+                        <h3 class="h5">Passwords Generated</h3>
+                        <div class="stat-value">1,234</div>
+                        <small class="text-muted">Last 30 days</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <h3 class="h5">Text Conversions</h3>
+                        <div class="stat-value">856</div>
+                        <small class="text-muted">Last 30 days</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">🔬</div>
+                        <h3 class="h5">Scientific Calculations</h3>
+                        <div class="stat-value">567</div>
+                        <small class="text-muted">Last 30 days</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">🔒</div>
+                        <h3 class="h5">Hashes Generated</h3>
+                        <div class="stat-value">432</div>
+                        <small class="text-muted">Last 30 days</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity and Chart Row -->
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="stat-card chart-container">
+                        <h3 class="h5 mb-4">Usage Analytics</h3>
+                        <div id="usageChart" style="height: 250px;">
+                            <!-- Chart will be added via JavaScript -->
+                            <div style="text-align: center; padding-top: 100px; color: #666;">
+                                Chart visualization coming soon...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card activity-card">
+                        <h3 class="h5 mb-4">Recent Activity</h3>
+                        <div class="activity-item">
+                            <strong>Password Generated</strong>
+                            <p class="mb-0 text-muted">2 minutes ago</p>
+                        </div>
+                        <div class="activity-item">
+                            <strong>Text Encoded</strong>
+                            <p class="mb-0 text-muted">15 minutes ago</p>
+                        </div>
+                        <div class="activity-item">
+                            <strong>Hash Generated</strong>
+                            <p class="mb-0 text-muted">1 hour ago</p>
+                        </div>
+                        <div class="activity-item">
+                            <strong>Unit Conversion</strong>
+                            <p class="mb-0 text-muted">2 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn">
+                    Generate Password
+                </button>
+                <button class="action-btn">
+                    Convert Text
+                </button>
+                <button class="action-btn">
+                    Scientific Tools
+                </button>
+                <button class="action-btn">
+                    Generate Hash
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Zwer</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
