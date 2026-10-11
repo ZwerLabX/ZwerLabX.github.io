@@ -1,94 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZwerLab - Home</title>
+    <meta name="theme-color" content="#111713">
+    <meta name="description" content="ZwerLab مساحة شخصية للتجربة والبناء؛ من البرمجة والكيمياء إلى الكتابة والأفكار التي لم تجد شكلها بعد.">
+    <title>ZwerLab — مش قالب واحد</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="zwer-home">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">ZwerLab</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="index.html" aria-label="ZwerLab home">Zwer<span>Lab</span><small>مختبر الأفكار</small></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="فتح القائمة">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">الرئيسية</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown">
-                            🛠️ Tools
-                        </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">الأدوات</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="password-generator.html">🔐 Password Generator</a></li>
-                            <li><a class="dropdown-item" href="text-tools.html">📝 Text Tools</a></li>
-                            <li><a class="dropdown-item" href="scientific-tools.html">🔬 Scientific Tools</a></li>
-                            <li><a class="dropdown-item" href="hash-generator.html">🔒 Hash Generator</a></li>
+                            <li><a class="dropdown-item" href="tools.html">كل الأدوات</a></li>
+                            <li><a class="dropdown-item" href="password-generator.html">مولّد كلمات المرور</a></li>
+                            <li><a class="dropdown-item" href="text-tools.html">أدوات النصوص</a></li>
+                            <li><a class="dropdown-item" href="scientific-tools.html">الأدوات العلمية</a></li>
+                            <li><a class="dropdown-item" href="hash-generator.html">مولّد Hash</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">دفتر الملاحظات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">عنّي</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">تواصل</a></li>
                 </ul>
-                <button id="darkModeToggle" class="btn btn-outline-light ms-3">
-                    <span id="darkModeIcon">🌑</span>
+                <button id="darkModeToggle" class="btn zwer-theme-toggle ms-lg-3" type="button" aria-label="تغيير المظهر">
+                    <span id="darkModeIcon" aria-hidden="true">🌑</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <header class="page-header">
-        <div class="container">
-            <h1>Welcome to ZwerLab</h1>
-            <p class="lead">Your hub for development tools and resources</p>
-        </div>
-    </header>
+    <main>
+        <section class="zwer-hero">
+            <div class="zwer-hero-grain" aria-hidden="true"></div>
+            <div class="container zwer-hero-inner">
+                <div class="zwer-hero-copy">
+                    <p class="zwer-eyebrow"><span class="zwer-status-dot"></span> مساحة شخصية للتجربة والبناء</p>
+                    <h1>مش قالب واحد.<br><span>مش طريق واحد.</span></h1>
+                    <p class="zwer-hero-lead">من المعادلات إلى الأكواد، ومن الكلمات إلى الأفكار التي لم تجد شكلها بعد. هنا أجرّب، أتعلم، وأحوّل الفضول إلى شيء حقيقي.</p>
+                    <p class="zwer-hero-english" lang="en" dir="ltr">A mind in progress. An identity of its own.</p>
+                    <div class="zwer-hero-actions">
+                        <a class="btn zwer-btn-primary" href="#the-lab">اكتشف عوالم ZwerLab <span aria-hidden="true">←</span></a>
+                        <a class="zwer-text-link" href="about.html">مين ورا الموقع؟ <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+                <div class="zwer-hero-art" aria-label="رسم تجريدي يجمع بين العلم والبرمجة والكتابة">
+                    <div class="zwer-orbit zwer-orbit-one"></div>
+                    <div class="zwer-orbit zwer-orbit-two"></div>
+                    <div class="zwer-art-core"><span>Zw.</span><small>CURIOUS BY DESIGN</small></div>
+                    <div class="zwer-float-card zwer-float-code"><span class="zwer-card-mark">&lt;/&gt;</span><span>BUILD</span><small>أبني وأجرّب</small></div>
+                    <div class="zwer-float-card zwer-float-ink"><span class="zwer-card-mark">✳</span><span>CREATE</span><small>أكتب وأتخيّل</small></div>
+                    <div class="zwer-float-card zwer-float-lab"><span class="zwer-card-mark">⌬</span><span>EXPLORE</span><small>أسأل وأكتشف</small></div>
+                    <span class="zwer-art-note zwer-note-top">IDEAS / 01</span>
+                    <span class="zwer-art-note zwer-note-bottom">NO FIXED FORM</span>
+                </div>
+            </div>
+            <div class="zwer-hero-footer container"><span>كود. علم. كلمات. وما بينهم.</span><span lang="en" dir="ltr">EST. BY CURIOSITY</span></div>
+        </section>
 
-    <main class="container my-5 fade-in-zoom">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title h5">Password Generator</h2>
-                        <p class="card-text">Generate secure passwords with our advanced tool.</p>
-                        <a href="password-generator.html" class="btn btn-primary">Try it now</a>
-                    </div>
+        <section class="zwer-section container" id="the-lab">
+            <div class="zwer-section-heading">
+                <div><p class="zwer-kicker">ثلاث نوافذ، عقل واحد</p><h2>مش كل حاجة لازم تدخل في خانة.</h2></div>
+                <p>مش بحاول أجمع اهتمامات متفرقة في قائمة واحدة؛ بحاول أدي لكل فكرة المساحة اللي تستحقها.</p>
+            </div>
+            <div class="row g-3 zwer-worlds">
+                <div class="col-md-4">
+                    <a class="zwer-world-card zwer-world-build" href="tools.html">
+                        <div class="zwer-world-top"><span class="zwer-world-index">01 / BUILD</span><span class="zwer-world-symbol" aria-hidden="true">&lt;/&gt;</span></div>
+                        <h3>أبني</h3><p lang="en" dir="ltr">Code, tools & experiments</p>
+                        <p class="zwer-world-description">أحوّل المشكلة إلى أداة، والفكرة إلى مشروع قابل للاستخدام.</p>
+                        <span class="zwer-world-link">استكشف الأدوات <span aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="zwer-world-card zwer-world-create" href="blog.html">
+                        <div class="zwer-world-top"><span class="zwer-world-index">02 / CREATE</span><span class="zwer-world-symbol" aria-hidden="true">✳</span></div>
+                        <h3>أعبّر</h3><p lang="en" dir="ltr">Words, rhythm & ideas</p>
+                        <p class="zwer-world-description">مساحة للكلمات والكتابة والتجارب الإبداعية، بعيدًا عن شكل واحد جاهز.</p>
+                        <span class="zwer-world-link">ادخل دفتر الملاحظات <span aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="zwer-world-card zwer-world-explore" href="scientific-tools.html">
+                        <div class="zwer-world-top"><span class="zwer-world-index">03 / EXPLORE</span><span class="zwer-world-symbol" aria-hidden="true">⌬</span></div>
+                        <h3>أستكشف</h3><p lang="en" dir="ltr">Science & the unknown</p>
+                        <p class="zwer-world-description">من الكيمياء والأسئلة العلمية إلى أي مجال يفتح بابًا لفهم جديد.</p>
+                        <span class="zwer-world-link">استكشف الجانب العلمي <span aria-hidden="true">↗</span></span>
+                    </a>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title h5">Text Tools</h2>
-                        <p class="card-text">Encode, decode, and manipulate text easily.</p>
-                        <a href="text-tools.html" class="btn btn-primary">Try it now</a>
-                    </div>
+        </section>
+
+        <section class="zwer-tools-band">
+            <div class="container">
+                <div class="zwer-section-heading zwer-tools-heading">
+                    <div><p class="zwer-kicker">من المختبر الرقمي</p><h2>أدوات معمولة علشان تُستخدم.</h2></div>
+                    <a class="zwer-text-link" href="tools.html">كل الأدوات <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-3"><a class="zwer-tool-link" href="password-generator.html"><span class="zwer-tool-icon">⌘</span><span><strong>كلمات مرور</strong><small>Password Generator</small></span><span class="zwer-tool-arrow">↗</span></a></div>
+                    <div class="col-sm-6 col-lg-3"><a class="zwer-tool-link" href="text-tools.html"><span class="zwer-tool-icon">Aa</span><span><strong>أدوات النصوص</strong><small>Text Tools</small></span><span class="zwer-tool-arrow">↗</span></a></div>
+                    <div class="col-sm-6 col-lg-3"><a class="zwer-tool-link" href="scientific-tools.html"><span class="zwer-tool-icon">⌬</span><span><strong>أدوات علمية</strong><small>Scientific Tools</small></span><span class="zwer-tool-arrow">↗</span></a></div>
+                    <div class="col-sm-6 col-lg-3"><a class="zwer-tool-link" href="hash-generator.html"><span class="zwer-tool-icon">#</span><span><strong>مولّد Hash</strong><small>Hash Generator</small></span><span class="zwer-tool-arrow">↗</span></a></div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title h5">Scientific Tools</h2>
-                        <p class="card-text">Essential tools for scientific calculations.</p>
-                        <a href="scientific-tools.html" class="btn btn-primary">Try it now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h2 class="card-title h5">Latest Blog Posts</h2>
-                        <p class="card-text">Check out our latest articles and tutorials.</p>
-                        <a href="blog.html" class="btn btn-primary">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
+
+        <section class="zwer-closing container">
+            <p class="zwer-kicker">لسه في حاجات كتير</p>
+            <h2>مش لازم أعرف النهاية<br>علشان أبدأ التجربة.</h2>
+            <p>الموقع ده بيتطوّر معايا. كل مشروع جديد، وكل فكرة تستحق التجربة، ممكن تفتح له بابًا مختلفًا.</p>
+            <a class="btn zwer-btn-primary" href="about.html">اعرف الحكاية <span aria-hidden="true">←</span></a>
+        </section>
     </main>
 
-    <footer>
-        <p>Made with ❤️ by Zwer</p>
+    <footer class="zwer-footer">
+        <div class="container"><a class="navbar-brand" href="index.html">Zwer<span>Lab</span></a><p>صُنع بفضول، ولسه بيتشكّل. <span lang="en" dir="ltr">Made with curiosity.</span></p><a href="contact.html">خلّينا نتكلم ↗</a></div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
